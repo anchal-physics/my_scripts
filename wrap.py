@@ -11,9 +11,9 @@ def wrap(file, maxLength=80, colPar=False):
         par = ''
         for ii, line in enumerate(allLines):
             if (line == '\n'
-                or line[0] == '\\'
-                or line[0] == '%'
-                or line[0] == ' '):
+                    or line[0] == '\\'
+                    or line[0] == '%'
+                    or line[0] == ' '):
                 if par != '':
                     colLines += [par + '\n', line]
                 else:
