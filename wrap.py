@@ -1,7 +1,13 @@
+#!/opt/anaconda3/bin/python
+
 import argparse
 
 
 def wrap(file, maxLength=80, colPar=False):
+    if isinstance(file, list):
+        for f in file:
+            wrap(f, maxLength=maxLength, colPar=colPar)
+        return
     with open(file, 'r') as f:
         allLines = f.readlines()
 
@@ -50,8 +56,8 @@ def grabInputArgs():
     parser = argparse.ArgumentParser(
         description='This script wraps all lines in the given file upto '
                     'maxLength provided (default 80)')
-    parser.add_argument('file', type=str,
-                        help='File name with path to wrap',
+    parser.add_argument('file', nargs='+',
+                        help='File path(s) to wrap separated by space',
                         default=None)
     parser.add_argument('-l', '--maxLength', type=int,
                         help='Maximum Lenght of a line in file. Default 80.',
